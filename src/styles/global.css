@@ -1,1 +1,533 @@
 @import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MahLogic Africa — Global Stylesheet
+   Place in: src/styles/mahlogic-africa.css
+   Import in: src/pages/index.astro  →  import "../styles/mahlogic-africa.css"
+
+   Google Fonts are loaded via <link> in the page <head>, not @import here.
+   Tailwind (if configured in astro.config.mjs) handles layout / spacing /
+   responsive utilities. This file owns brand tokens, custom helpers,
+   animations, and all component-level classes.
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Brand tokens ────────────────────────────────────────────────────────────── */
+:root {
+    --gold: #c48f22;
+    --navy: #000000;
+    --navy-mid: #08080a;
+    --navy-light: #121215;
+    --muted: #8892a4;
+    --body: #c4ccda;
+    --white: #f0f4fc;
+}
+
+/* ── Base reset ──────────────────────────────────────────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--navy);
+    color: var(--body);
+    font-family: "Instrument Sans", sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Font family helpers ─────────────────────────────────────────────────────── */
+.f-display {
+    font-family: "Cormorant Garamond", serif;
+}
+.f-mono {
+    font-family: "DM Mono", monospace;
+}
+
+/* ── Color helpers ───────────────────────────────────────────────────────────── */
+.c-gold {
+    color: var(--gold);
+}
+.c-muted {
+    color: var(--muted);
+}
+.c-body {
+    color: var(--body);
+}
+.c-white {
+    color: var(--white);
+}
+
+.bg-navy {
+    background: var(--navy);
+}
+.bg-navymid {
+    background: var(--navy-mid);
+}
+.bg-navylight {
+    background: var(--navy-light);
+}
+.bg-gold {
+    background: var(--gold);
+}
+
+/* ── Border helpers ──────────────────────────────────────────────────────────── */
+.border-gold {
+    border-color: var(--gold);
+}
+.border-gold-dim {
+    border-color: rgba(201, 168, 76, 0.14);
+}
+.border-white-dim {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ── 1 px grid-gap trick ─────────────────────────────────────────────────────── */
+.gap-1px {
+    gap: 1px;
+}
+.bg-gap {
+    background: rgba(201, 168, 76, 0.12);
+}
+
+/* ── Gradient divider ────────────────────────────────────────────────────────── */
+.divider-gold {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 168, 76, 0.35),
+        transparent
+    );
+}
+
+/* ── Dot-grid hero texture ───────────────────────────────────────────────────── */
+.grid-texture {
+    background-image:
+        linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+}
+
+/* ── Radial gold glow ────────────────────────────────────────────────────────── */
+.glow-gold {
+    background: radial-gradient(
+        circle,
+        rgba(201, 168, 76, 0.05) 0%,
+        transparent 68%
+    );
+}
+
+/* ── Hover / transition helpers ──────────────────────────────────────────────── */
+.hover-navy:hover {
+    background: var(--navy-light) !important;
+}
+.hover-gold-text:hover {
+    color: var(--gold) !important;
+}
+.hover-white-text:hover {
+    color: var(--white) !important;
+}
+.transition-bg {
+    transition: background 0.22s ease;
+}
+.transition-c {
+    transition: color 0.22s ease;
+}
+
+/* ── Nav pill CTA ────────────────────────────────────────────────────────────── */
+.nav-pill {
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    transition: background 0.22s ease;
+}
+.nav-pill:hover {
+    background: rgba(201, 168, 76, 0.08);
+}
+
+/* ── Table row hover ─────────────────────────────────────────────────────────── */
+.tr-row:hover {
+    background: rgba(201, 168, 76, 0.02);
+}
+
+/* ── Fade-up entrance animations ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.a1 {
+    animation: fadeUp 0.75s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+}
+.a2 {
+    animation: fadeUp 0.75s ease forwards;
+    animation-delay: 0.28s;
+    opacity: 0;
+}
+.a3 {
+    animation: fadeUp 0.75s ease forwards;
+    animation-delay: 0.46s;
+    opacity: 0;
+}
+.a4 {
+    animation: fadeUp 0.75s ease forwards;
+    animation-delay: 0.64s;
+    opacity: 0;
+}
+.a5 {
+    animation: fadeUp 0.75s ease forwards;
+    animation-delay: 0.82s;
+    opacity: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component-level classes
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Navigation ──────────────────────────────────────────────────────────────── */
+.nav-root {
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+    border-color: rgba(201, 168, 76, 0.14);
+    backdrop-filter: blur(14px);
+    background: rgba(0, 0, 0, 1);
+}
+
+.nav-logo {
+    font-size: 1.18rem;
+    letter-spacing: 0.04em;
+}
+
+.nav-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.nav-cta-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* ── Section label & title ───────────────────────────────────────────────────── */
+.section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────────── */
+.hero-eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.hero-headline {
+    font-size: clamp(3.4rem, 7vw, 6.2rem);
+}
+
+.hero-body {
+    font-size: 0.97rem;
+}
+
+.hero-quote {
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
+    font-size: 1.08rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────────── */
+.btn-primary {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.4rem;
+    text-decoration: none;
+    color: #0a0e1a;
+    transition: filter 0.2s ease;
+    display: inline-block;
+}
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.btn-ghost {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* ── What We Build cards ─────────────────────────────────────────────────────── */
+.build-number {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+}
+
+.build-title {
+    font-size: 1.28rem;
+}
+.build-desc {
+    font-size: 0.84rem;
+}
+
+/* ── Approach steps ──────────────────────────────────────────────────────────── */
+.step-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.step-number {
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    width: 2rem;
+}
+
+.step-title {
+    font-size: 1.08rem;
+}
+.step-desc {
+    font-size: 0.84rem;
+}
+
+/* ── Principles ──────────────────────────────────────────────────────────────── */
+.principles-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.principle-block {
+    border-left: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.principle-title {
+    font-size: 1.06rem;
+}
+.principle-desc {
+    font-size: 0.84rem;
+}
+
+/* ── How We Work cards ───────────────────────────────────────────────────────── */
+.how-icon {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.how-title {
+    font-size: 1.18rem;
+}
+.how-desc {
+    font-size: 0.82rem;
+}
+
+/* ── Technology ──────────────────────────────────────────────────────────────── */
+.tech-body {
+    font-size: 0.9rem;
+}
+
+.tech-quote-block {
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    background: rgba(201, 168, 76, 0.03);
+}
+
+.tech-quote-text {
+    font-size: 0.9rem;
+}
+.tech-note {
+    font-size: 0.78rem;
+}
+
+.tech-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tech-name {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+}
+
+.tech-role {
+    font-size: 0.9rem;
+}
+
+/* ── AI section ──────────────────────────────────────────────────────────────── */
+.ai-statement {
+    font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+    line-height: 1.45;
+}
+
+.ai-body-text {
+    font-size: 0.9rem;
+}
+
+/* Contrast table */
+.contrast-table {
+    border-collapse: collapse;
+}
+
+.contrast-th-ai {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    width: 44%;
+}
+
+.contrast-th-us {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.contrast-th-arrow {
+    width: 6%;
+}
+
+.contrast-td-ai {
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.contrast-td-arrow {
+    opacity: 0.25;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.contrast-arrow-glyph {
+    font-size: 0.68rem;
+}
+
+.contrast-td-us {
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Audit block */
+.audit-block {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201, 168, 76, 0.13);
+}
+
+.audit-deco-quote {
+    top: -1.6rem;
+    left: 2.8rem;
+    font-size: 6rem;
+    line-height: 1;
+    opacity: 0.1;
+}
+
+.audit-subtitle {
+    font-size: clamp(1.55rem, 3vw, 2rem);
+}
+.audit-body {
+    font-size: 0.88rem;
+}
+
+.audit-card-icon {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.audit-card-title {
+    font-size: 1.04rem;
+}
+.audit-card-desc {
+    font-size: 0.82rem;
+}
+
+.audit-footer {
+    border-top: 1px solid rgba(201, 168, 76, 0.12);
+}
+
+.audit-closing-quote {
+    font-size: 1.12rem;
+}
+
+/* ── Who We Work With ────────────────────────────────────────────────────────── */
+.who-body {
+    font-size: 0.92rem;
+}
+.who-card-title {
+    font-size: 1.22rem;
+}
+.who-card-desc {
+    font-size: 0.85rem;
+}
+
+.who-not-block {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.who-not-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.who-not-desc {
+    font-size: 0.88rem;
+}
+
+/* ── FAQ ─────────────────────────────────────────────────────────────────────── */
+.faq-question {
+    font-size: 1.1rem;
+}
+.faq-answer {
+    font-size: 0.85rem;
+}
+
+/* ── Final CTA ───────────────────────────────────────────────────────────────── */
+.cta-headline {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    max-width: 660px;
+}
+
+.cta-body {
+    font-size: 0.92rem;
+    max-width: 450px;
+}
+
+.cta-email-line {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+}
+
+.cta-email-link {
+    text-decoration: none;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────────── */
+.footer-root {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-logo {
+    font-size: 1rem;
+}
+
+.footer-link {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.footer-copy {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: rgba(136, 146, 164, 0.42);
+}

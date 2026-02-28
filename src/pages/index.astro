@@ -1,26 +1,1073 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+/**
+ * MahLogic Africa — Landing Page
+ * File:   src/pages/index.astro
+ * Styles: src/styles/mahlogic-africa.css
+ *
+ * Setup notes:
+ *   1. Copy mahlogic-africa.css → src/styles/mahlogic-africa.css
+ *   2. Install Tailwind:  npx astro add tailwind
+ *   3. Google Fonts are loaded via <link> in <head> below — no @import needed.
+ *   4. This file has zero client-side JS; everything is static HTML + CSS.
+ */
+import Posthog from "../components/Posthog.astro";
+import "../styles/global.css";
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+const builds = [
+    {
+        n: "01",
+        title: "Internal Business Systems",
+        desc: "Custom platforms built around how your operations actually work — not how a generic tool assumes they do.",
+    },
+    {
+        n: "02",
+        title: "Operational Dashboards",
+        desc: "Real-time visibility into the data that drives decisions. Precise, performant, and purpose-built.",
+    },
+    {
+        n: "03",
+        title: "Client Portals",
+        desc: "Structured interfaces for your clients to access services, track progress, and engage with your business.",
+    },
+    {
+        n: "04",
+        title: "Admin Platforms",
+        desc: "Internal control surfaces for managing users, content, workflows, and configuration — built to scale.",
+    },
+    {
+        n: "05",
+        title: "Workflow Automation",
+        desc: "Systems that reduce manual overhead and enforce process consistency across your operations.",
+    },
+    {
+        n: "06",
+        title: "High-Performance Web Apps",
+        desc: "Full-stack systems engineered for reliability, speed, and long-term maintainability.",
+    },
+];
+
+const steps = [
+    {
+        n: "01",
+        title: "Discovery",
+        desc: "We begin by understanding your business model, current constraints, and where a system can create the most leverage.",
+    },
+    {
+        n: "02",
+        title: "Architecture",
+        desc: "Before writing a line of code, we map the data model, user flows, and system boundaries. This work prevents expensive changes later.",
+    },
+    {
+        n: "03",
+        title: "Delivery",
+        desc: "We build in structured iterations. You see progress early and often. Nothing ships without your approval.",
+    },
+    {
+        n: "04",
+        title: "Handoff",
+        desc: "You receive well-documented, maintainable code. We ensure your team understands what was built and how it works.",
+    },
+];
+
+const principles = [
+    {
+        title: "We do not prototype with your production system.",
+        desc: "Every engagement begins with clarity. We understand your constraints before we build anything.",
+    },
+    {
+        title: "We work with one point of contact.",
+        desc: "Decision cycles stay short. There is no committee approval between a problem and a solution.",
+    },
+    {
+        title: "We do not cut corners to hit arbitrary timelines.",
+        desc: "Speed and quality are not opposites — but when forced to choose, we protect the quality of the system.",
+    },
+];
+
+const howCards = [
+    {
+        icon: "DIRECT",
+        title: "No subcontracting",
+        desc: "The people you speak with are the people who build your system. Your project is not handed off elsewhere.",
+    },
+    {
+        icon: "CLEAR",
+        title: "Fixed-scope engagements",
+        desc: "We define scope before we begin. Cost and timeline are established upfront — not billed by the hour.",
+    },
+    {
+        icon: "HONEST",
+        title: "Transparent communication",
+        desc: "We communicate problems as they arise. We do not hide delays or difficulties. You are always informed.",
+    },
+    {
+        icon: "LONG-TERM",
+        title: "Built to be maintained",
+        desc: "Our code is written with the expectation that someone will need to work with it in three years.",
+    },
+];
+
+const techStack = [
+    { name: "Next.js", role: "Application framework" },
+    { name: "React", role: "UI layer" },
+    { name: "TypeScript", role: "Type-safe development" },
+    { name: "Node.js / Express", role: "Server-side logic" },
+    { name: "Go", role: "Performance-critical services" },
+    { name: "PostgreSQL", role: "Relational data store" },
+    { name: "Cloud infrastructure", role: "Deployment & scaling" },
+];
+
+const whoCards = [
+    {
+        title: "Founders building serious products",
+        desc: "You have a business model that works. Now you need a system that can support it at scale — built properly from the start.",
+    },
+    {
+        title: "Businesses outgrowing spreadsheets",
+        desc: "Your current tools were right for where you were. They are not right for where you are going.",
+    },
+    {
+        title: "Companies needing operational clarity",
+        desc: "You need your team to operate from a single source of truth. We build the internal tools that make that possible.",
+    },
+    {
+        title: "Non-technical owners who value precision",
+        desc: "You do not need to understand the code. You need to trust the system. We communicate clearly and document fully.",
+    },
+];
+
+const contrastRows = [
+    ["Can generate code.", "We engineer systems."],
+    [
+        "Can prototype a feature.",
+        "We design the architecture that sustains it.",
+    ],
+    [
+        "Can assemble functions.",
+        "We build the foundations that hold them together.",
+    ],
+    [
+        "Can produce something that works today.",
+        "We build something that works correctly for years.",
+    ],
+    [
+        "Can accelerate development.",
+        "We ensure what is built is worth accelerating.",
+    ],
+    [
+        "Can write the logic.",
+        "We define the structure that makes logic maintainable.",
+    ],
+];
+
+const auditItems = [
+    {
+        icon: "AUDIT",
+        title: "Code Review & Assessment",
+        desc: "We examine the existing codebase for structural problems, security gaps, and logic that will create issues at scale.",
+    },
+    {
+        icon: "REFACTOR",
+        title: "Architecture Refactoring",
+        desc: "We introduce proper structure — clear separation of concerns, consistent patterns, and a maintainable data model.",
+    },
+    {
+        icon: "SECURITY",
+        title: "Security Hardening",
+        desc: "AI-generated code often overlooks vulnerabilities. We identify and close those gaps systematically.",
+    },
+    {
+        icon: "PERF",
+        title: "Performance Optimisation",
+        desc: "We profile the system, identify bottlenecks, and improve query structure, caching strategy, and response times.",
+    },
+    {
+        icon: "DOCS",
+        title: "Documentation Standards",
+        desc: "We document what was built, how it works, and the decisions behind it — so the system can be maintained by anyone.",
+    },
+    {
+        icon: "SCALE",
+        title: "Production Readiness",
+        desc: "Error handling, logging, monitoring, environment configuration, and deployment structure — all properly in place.",
+    },
+];
+
+const faqs = [
+    {
+        q: "Do you work with clients outside Africa?",
+        a: "Yes. Our location is an advantage — we operate on African time zones with a global standard of engineering.",
+    },
+    {
+        q: "Do you offer retainer or maintenance agreements?",
+        a: "Yes. After delivery we offer structured maintenance agreements for clients who prefer ongoing support.",
+    },
+    {
+        q: "What happens if requirements change during development?",
+        a: "We scope carefully upfront. When legitimate changes arise, we assess the impact honestly before proceeding.",
+    },
+    {
+        q: "How long does a typical project take?",
+        a: "A focused internal tool may take four to six weeks. A complex operational platform may take three to five months. We give accurate estimates, not optimistic ones.",
+    },
+    {
+        q: "Do you provide source code and documentation?",
+        a: "Always. You own everything we build. Source code, documentation, and deployment instructions are delivered as part of every project.",
+    },
+    {
+        q: "We have no technical team. Can we still work together?",
+        a: "Yes. We are experienced working with non-technical clients. We translate complexity into plain language and guide you through every decision.",
+    },
+];
+
+const navLinks = [
+    ["#what-we-build", "Work"],
+    ["#approach", "Approach"],
+    ["#ai-engineering", "AI & Engineering"],
+    ["#technology", "Technology"],
+    ["#faq", "FAQ"],
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="MahLogic Africa builds custom web applications, internal business systems, dashboards, and secure operational platforms."
+        />
+        <title>MahLogic Africa | Custom Software Development Agency</title>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="canonical" href="https://mahlogic.africa/" />
+
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="MahLogic Africa | Custom Software Development Agency"
+        />
+        <meta
+            property="og:description"
+            content="Custom web applications, internal business systems, dashboards, and operational platforms built with modern engineering standards."
+        />
+        <meta property="og:url" content="https://mahlogic.africa" />
+        <meta property="og:image" content="/og-image.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="MahLogic Africa | Custom Software Development Agency"
+        />
+        <meta
+            name="twitter:description"
+            content="We build modern web applications, internal systems, dashboards, and secure client platforms."
+        />
+        <meta name="twitter:image" content="/og-image.jpg" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "ProfessionalService",
+                "name": "MahLogic Africa",
+                "url": "https://mahlogic.africa",
+                "logo": "https://mahlogic.africa/logo.png",
+                "description": "Custom software engineering agency building web applications, internal business systems, dashboards, and operational platforms.",
+                "areaServed": {
+                    "@type": "Place",
+                    "name": "Africa"
+                },
+                "foundingLocation": {
+                    "@type": "Country",
+                    "name": "South Africa"
+                },
+                "serviceType": [
+                    "Custom Software Development",
+                    "Web Application Development",
+                    "Internal Business Systems",
+                    "Dashboard Development",
+                    "Client Portal Development"
+                ]
+            }
+        </script>
+        <Posthog />
+    </head>
+    <body>
+        <!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
+        <nav
+            class="nav-root fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-16 py-5"
+        >
+            <div class="flex items-center gap-3 font-medium">
+                <!-- SVG LEFT -->
+                <svg
+                    class="w-12.5 h-auto"
+                    viewBox="0 0 335 132"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <g
+                        clip-path="url(#paint0_angular_92_2_clip_path)"
+                        data-figma-skip-parse="true"
+                        ><g
+                            transform="matrix(0.1 -0.118 0.178768 0.15168 100 66)"
+                            ><foreignObject
+                                x="-752.763"
+                                y="-752.763"
+                                width="1505.53"
+                                height="1505.53"
+                                ><div
+                                    xmlns="http://www.w3.org/1999/xhtml"
+                                    style="background:conic-gradient(from 90deg,rgba(230, 185, 103, 1) 0deg,rgba(196, 142, 33, 1) 360deg);height:100%;width:100%;opacity:1"
+                                >
+                                </div></foreignObject
+                            ></g
+                        ></g
+                    ><rect
+                        width="200"
+                        height="132"
+                        data-figma-gradient-fill='{"type":"GRADIENT_ANGULAR","stops":[{"color":{"r":0.90384614467620850,"g":0.72876077890396118,"b":0.40412351489067078,"a":1.0},"position":0.0},{"color":{"r":0.76923078298568726,"g":0.56067520380020142,"b":0.13313609361648560,"a":1.0},"position":1.0}],"stopsVar":[{"color":{"r":0.90384614467620850,"g":0.72876077890396118,"b":0.40412351489067078,"a":1.0},"position":0.0},{"color":{"r":0.76923078298568726,"g":0.56067520380020142,"b":0.13313609361648560,"a":1.0},"position":1.0}],"transform":{"m00":199.99996948242188,"m01":357.53552246093750,"m02":-178.76773071289062,"m10":-236.0,"m11":303.36019897460938,"m12":32.319904327392578},"opacity":1.0,"blendMode":"NORMAL","visible":true}'
+                    ></rect>
+                    <path
+                        d="M299.432 110H280.872L275.752 94.256H245.16L240.168 110H221.608L250.792 26.544C252.072 23.6427 253.48 21.6373 255.016 20.528C256.637 19.4187 258.6 18.864 260.904 18.864C263.208 18.864 265.042 19.376 266.408 20.4C267.858 21.424 269.138 23.472 270.248 26.544L299.432 110ZM271.656 79.28L260.904 43.184L249.64 79.28H271.656Z"
+                        fill="url(#paint1_linear_92_2)"></path>
+                    <path
+                        d="M95.3895 55.6L79.0055 90.16C76.6162 94.768 73.6295 97.072 70.0455 97.072C66.5468 97.072 63.6028 94.64 61.2135 89.776L44.5735 55.6V110H26.7815V18.864H44.3175L70.0455 71.472L95.6455 18.864H113.182V110H95.3895V55.6ZM188.004 110H160.868C150.628 110 143.204 108.037 138.596 104.112C134.073 100.101 131.812 93.616 131.812 84.656V18.864H149.604V84.656C149.604 88.24 150.414 90.7147 152.036 92.08C153.657 93.4453 156.601 94.128 160.868 94.128H188.004V110Z"
+                        fill="#111423"></path>
+                    <defs>
+                        <clipPath id="paint0_angular_92_2_clip_path"
+                            ><rect width="200" height="132"></rect></clipPath
+                        >
+                        <linearGradient
+                            id="paint1_linear_92_2"
+                            x1="303.422"
+                            y1="88"
+                            x2="295.15"
+                            y2="33.2742"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#DFAF56"></stop>
+                            <stop offset="1" stop-color="#F9D888"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- TEXT RIGHT -->
+                <div
+                    class="flex items-baseline f-display c-white font-medium nav-logo"
+                >
+                    <span>MahLogic</span>
+                    <span class="c-gold">Africa</span>
+                </div>
+            </div>
+            <ul class="hidden md:flex items-center gap-9 list-none m-0 p-0">
+                {
+                    navLinks.map(([href, lbl]) => (
+                        <li>
+                            <a
+                                href={href}
+                                class="f-mono c-muted hover-white-text transition-c nav-link"
+                            >
+                                {lbl}
+                            </a>
+                        </li>
+                    ))
+                }
+                <li>
+                    <a
+                        href="#contact"
+                        class="f-mono c-gold nav-pill nav-cta-link px-5 py-2"
+                        data-ph-capture="cta_click"
+                        data-ph-label="nav_primary"
+                    >
+                        Book a Consultation
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- ── HERO ────────────────────────────────────────────────────────────────── -->
+        <section
+            class="relative min-h-screen flex items-center bg-navy grid-texture overflow-hidden px-6 md:px-16"
+        >
+            <div
+                class="absolute -top-48 -right-48 w-140 h-140 rounded-full glow-gold pointer-events-none"
+            >
+            </div>
+            <div class="relative z-10 max-w-5xl mx-auto w-full pt-32 pb-24">
+                <div class="a1 flex items-center gap-4 mb-8">
+                    <span class="block w-8 h-px bg-gold"></span>
+                    <span class="f-mono c-gold hero-eyebrow"
+                        >Custom Software Engineering In Africa</span
+                    >
+                </div>
+
+                <h1
+                    class="a2 f-display c-white font-light leading-none mb-8 hero-headline"
+                >
+                    Systems built for<br /><em class="c-gold"
+                        >serious businesses.</em
+                    >
+                </h1>
+
+                <p
+                    class="a3 c-muted font-light leading-loose mb-12 max-w-xl hero-body"
+                >
+                    MahLogic Africa designs and builds custom software for
+                    businesses that require more than off-the-shelf tools can
+                    offer. We work directly with founders and operators to build
+                    internal systems, platforms, and applications that are
+                    precise, maintainable, and built to last.
+                </p>
+
+                <div class="a4 flex flex-wrap items-center gap-5">
+                    <a
+                        href="#contact"
+                        class="bg-gold f-mono btn-primary"
+                        data-ph-capture="cta_click"
+                        data-ph-label="hero_primary">Book a Consultation</a
+                    >
+                    <a
+                        href="#what-we-build"
+                        class="f-mono c-muted hover-white-text transition-c btn-ghost inline-flex items-center gap-2"
+                    >
+                        See what we build -
+                    </a>
+                </div>
+
+                <div
+                    class="a5 mt-20 pt-8 f-display c-muted italic font-light max-w-lg leading-relaxed hero-quote"
+                >
+                    "We do not build fast. We build correctly. There is a
+                    meaningful difference."
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WHAT WE BUILD ────────────────────────────────────────────────────────── -->
+        <section id="what-we-build" class="bg-navy px-6 md:px-16 py-28">
+            <div class="max-w-5xl mx-auto">
+                <p class="f-mono c-gold mb-5 section-label">
+                    Custom Software Development Services
+                </p>
+                <h2
+                    class="f-display c-white font-light leading-tight section-title mb-4"
+                >
+                    Custom systems. No templates.<br />No compromises.
+                </h2>
+                <p
+                    class="c-muted font-light leading-loose max-w-lg mb-16 build-desc"
+                >
+                    Every system we deliver is designed for a specific business
+                    context. We do not adapt existing software — we architect
+                    and build from the ground up, with your operational
+                    requirements as the specification.
+                </p>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gap gap-1px"
+                >
+                    {
+                        builds.map((b) => (
+                            <div class="bg-navymid hover-navy transition-bg p-10">
+                                <p class="f-mono c-gold mb-5 build-number">
+                                    {b.n}
+                                </p>
+                                <h3 class="f-display c-white font-normal mb-3 build-title">
+                                    {b.title}
+                                </h3>
+                                <p class="c-muted font-light leading-loose build-desc">
+                                    {b.desc}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ── APPROACH ─────────────────────────────────────────────────────────────── -->
+        <section id="approach" class="bg-navymid px-6 md:px-16 py-28">
+            <div class="max-w-5xl mx-auto">
+                <p class="f-mono c-gold mb-5 section-label">Our Approach</p>
+                <h2
+                    class="f-display c-white font-light leading-tight section-title mb-10"
+                >
+                    Engineered, not improvised.
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                    <!-- Steps -->
+                    <div>
+                        <p
+                            class="c-muted font-light leading-loose mb-10 step-desc"
+                        >
+                            We follow a structured process because the quality
+                            of a software system is determined long before the
+                            first line of code. Clarity precedes construction.
+                        </p>
+                        {
+                            steps.map((s) => (
+                                <div class="flex gap-6 py-7 step-row">
+                                    <span class="f-mono c-gold mt-1 shrink-0 step-number">
+                                        {s.n}
+                                    </span>
+                                    <div>
+                                        <h4 class="f-display c-white font-normal mb-2 step-title">
+                                            {s.title}
+                                        </h4>
+                                        <p class="c-muted font-light leading-loose step-desc">
+                                            {s.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <!-- Principles -->
+                    <div class="pt-1">
+                        <p class="f-mono c-gold mb-8 principles-label">
+                            How We Think
+                        </p>
+                        {
+                            principles.map((p) => (
+                                <div class="pl-8 mb-10 principle-block">
+                                    <h4 class="f-display c-white font-normal mb-2 principle-title">
+                                        {p.title}
+                                    </h4>
+                                    <p class="c-muted font-light leading-loose principle-desc">
+                                        {p.desc}
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── HOW WE WORK ──────────────────────────────────────────────────────────── -->
+        <section id="how-we-work" class="bg-navy px-6 md:px-16 py-28">
+            <div class="max-w-5xl mx-auto">
+                <p class="f-mono c-gold mb-5 section-label">How We Work</p>
+                <h2
+                    class="f-display c-white font-light leading-tight section-title mb-16"
+                >
+                    Direct. Transparent. Deliberate.
+                </h2>
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-gap gap-1px"
+                >
+                    {
+                        howCards.map((h) => (
+                            <div class="bg-navy hover-navy transition-bg p-10">
+                                <p class="f-mono c-gold mb-6 how-icon">
+                                    {h.icon}
+                                </p>
+                                <h3 class="f-display c-white font-normal mb-3 how-title">
+                                    {h.title}
+                                </h3>
+                                <p class="c-muted font-light leading-loose how-desc">
+                                    {h.desc}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ── TECHNOLOGY ───────────────────────────────────────────────────────────── -->
+        <section id="technology" class="bg-navymid px-6 md:px-16 py-28">
+            <div class="max-w-5xl mx-auto">
+                <p class="f-mono c-gold mb-5 section-label">
+                    Modern Engineering Stack:
+                </p>
+                <h2
+                    class="f-display c-white font-light leading-tight section-title mb-10"
+                >
+                    A precise and deliberate stack.
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                    <div>
+                        <p
+                            class="c-muted font-light leading-loose mb-8 tech-body"
+                        >
+                            We do not chase frameworks. We use a focused,
+                            well-understood technology stack that we build with
+                            confidence and maintain with clarity. Each choice is
+                            intentional.
+                        </p>
+                        <div class="p-8 tech-quote-block">
+                            <p
+                                class="f-display c-muted italic font-light leading-loose tech-quote-text"
+                            >
+                                "A good technology choice is one that reduces
+                                complexity over time, not one that demonstrates
+                                sophistication. Our stack reflects this."
+                            </p>
+                        </div>
+                        <p
+                            class="c-muted font-light leading-loose mt-6 f-display italic tech-note"
+                        >
+                            Non-technical clients do not need to understand
+                            these choices — only that they are sound, proven,
+                            and well-supported.
+                        </p>
+                    </div>
+
+                    <div>
+                        {
+                            techStack.map((t) => (
+                                <div class="flex items-center justify-between py-4 tech-row">
+                                    <span class="f-mono c-white tech-name">
+                                        {t.name}
+                                    </span>
+                                    <span class="f-display c-muted italic tech-role">
+                                        {t.role}
+                                    </span>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── AI CAN BUILD. WE ENGINEER. ──────────────────────────────────────────── -->
+        <section
+            id="ai-engineering"
+            class="relative bg-navy px-6 md:px-16 py-28 overflow-hidden"
+        >
+            <div class="divider-gold absolute top-0 left-0 right-0"></div>
+            <div class="divider-gold absolute bottom-0 left-0 right-0"></div>
+
+            <div class="max-w-5xl mx-auto relative z-10">
+                <p class="f-mono c-gold mb-5 section-label">
+                    AI Can Build. We Engineer.
+                </p>
+
+                <!-- Opening two-col -->
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-24 mb-20"
+                >
+                    <div>
+                        <h2
+                            class="f-display c-white font-light leading-tight section-title mb-8"
+                        >
+                            There is a difference between
+                            <em class="c-gold italic"> code that runs</em>
+                            and a system that holds.
+                        </h2>
+                        <p
+                            class="f-display c-white font-light italic ai-statement"
+                        >
+                            AI tools are genuinely useful.<br />
+                            We use them too.<br />
+                            <strong
+                                class="f-display not-italic font-medium c-gold"
+                                >The question is what happens next.</strong
+                            >
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-5 pt-1">
+                        <p
+                            class="c-muted font-light leading-loose ai-body-text"
+                        >
+                            AI code generation has made it faster than ever to
+                            build a working prototype, scaffold an application,
+                            or automate a simple task. That is a real and
+                            meaningful advancement. We have no argument with it.
+                        </p>
+                        <p
+                            class="c-muted font-light leading-loose ai-body-text"
+                        >
+                            What AI cannot do is understand the specific context
+                            of your business, the long-term cost of an
+                            architectural decision, or the operational
+                            consequences of a system that wasn't designed for
+                            growth. It generates code. It does not engineer
+                            systems.
+                        </p>
+                        <p
+                            class="c-muted font-light leading-loose ai-body-text"
+                        >
+                            The gap between a system that functions and one that
+                            is
+                            <em class="f-display italic"> built properly</em>
+                            is where we work. It is the difference between what is
+                            possible immediately and what remains reliable at scale.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contrast table -->
+                <div class="overflow-x-auto mb-20">
+                    <table class="w-full contrast-table">
+                        <thead>
+                            <tr
+                                style="border-bottom: 1px solid rgba(201,168,76,0.2)"
+                            >
+                                <th
+                                    class="f-mono c-muted font-normal text-left pb-5 pr-6 contrast-th-ai"
+                                    >AI Generation</th
+                                >
+                                <th class="contrast-th-arrow pb-5"></th>
+                                <th
+                                    class="f-mono c-gold font-normal text-left pb-5 pl-6 contrast-th-us"
+                                    >MahLogic Africa Engineering</th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                contrastRows.map(([ai, us]) => (
+                                    <tr class="tr-row">
+                                        <td class="f-display c-muted italic py-5 pr-6 align-top leading-snug contrast-td-ai">
+                                            {ai}
+                                        </td>
+                                        <td class="text-center py-5 align-top contrast-td-arrow">
+                                            <span class="f-mono c-gold contrast-arrow-glyph">
+                                                →
+                                            </span>
+                                        </td>
+                                        <td class="c-body font-light py-5 pl-6 align-top leading-loose contrast-td-us">
+                                            {us}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Audit block -->
+                <div class="relative p-10 md:p-14 audit-block">
+                    <span
+                        class="f-display c-gold absolute pointer-events-none select-none audit-deco-quote"
+                        >"</span
+                    >
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+                        <div>
+                            <p class="f-mono c-gold mb-5 section-label">
+                                Built with AI? We Can Take It Further.
+                            </p>
+                            <h3
+                                class="f-display c-white font-light leading-tight audit-subtitle"
+                            >
+                                We work with AI-assisted projects.<br />
+                                We know what to look for —<br />
+                                <em class="c-gold italic">and what to fix.</em>
+                            </h3>
+                        </div>
+                        <p
+                            class="c-muted font-light leading-loose pt-1 audit-body"
+                        >
+                            Many businesses come to us with a system built
+                            quickly — often with AI assistance — that now needs
+                            to grow, stabilise, or go into production properly.
+                            We do not start over unnecessarily. We assess what
+                            exists, understand what is sound, and rebuild only
+                            what requires it. The result is a system that can be
+                            trusted, maintained, and scaled.
+                        </p>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 bg-gap gap-1px mb-12"
+                    >
+                        {
+                            auditItems.map((item) => (
+                                <div class="bg-navymid hover-navy transition-bg p-8">
+                                    <p class="f-mono c-gold mb-3 audit-card-icon">
+                                        {item.icon}
+                                    </p>
+                                    <h4 class="f-display c-white font-normal mb-2 audit-card-title">
+                                        {item.title}
+                                    </h4>
+                                    <p class="c-muted font-light leading-loose audit-card-desc">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <div
+                        class="flex flex-col md:flex-row md:items-center gap-8 pt-10 audit-footer"
+                    >
+                        <p
+                            class="f-display c-muted italic font-light leading-relaxed flex-1 audit-closing-quote"
+                        >
+                            "We are not here to replace what AI built. We are
+                            here to ensure it is
+                            <strong class="c-white not-italic font-normal">
+                                worth keeping</strong
+                            >
+                            — and that it can carry the weight you intend to place
+                            on it."
+                        </p>
+                        <a href="#contact" class="bg-gold f-mono btn-primary"
+                            >Discuss Your System</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WHO WE WORK WITH ─────────────────────────────────────────────────────── -->
+        <section id="who-we-work-with" class="bg-navymid px-6 md:px-16 py-28">
+            <div class="max-w-5xl mx-auto">
+                <p class="f-mono c-gold mb-5 section-label">
+                    Who We Work Best With
+                </p>
+                <h2
+                    class="f-display c-white font-light leading-tight section-title mb-4"
+                >
+                    We are selective about who we take on.
+                </h2>
+                <p
+                    class="c-muted font-light leading-loose max-w-lg mb-16 who-body"
+                >
+                    Not every engagement is the right fit — for you or for us.
+                    Our best work happens when clients share a commitment to
+                    precision, clarity, and long-term thinking.
+                </p>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 bg-gap gap-1px mb-8"
+                >
+                    {
+                        whoCards.map((w) => (
+                            <div class="bg-navy hover-navy transition-bg p-10">
+                                <h3 class="f-display c-white font-normal mb-3 who-card-title">
+                                    {w.title}
+                                </h3>
+                                <p class="c-muted font-light leading-loose who-card-desc">
+                                    {w.desc}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+                <div class="p-10 who-not-block">
+                    <p class="f-mono c-muted mb-3 who-not-label">
+                        We may not be the right fit if —
+                    </p>
+                    <p class="c-muted font-light leading-loose who-not-desc">
+                        You need a website or marketing landing page. You are
+                        looking for the lowest price. You require a system built
+                        and deployed in days with no discovery process. We are
+                        not a generalist agency. We are a custom software studio
+                        for clients who understand the value of doing it
+                        properly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FAQ ──────────────────────────────────────────────────────────────────── -->
+        <section id="faq" class="bg-navy px-6 md:px-16 py-28">
+            <div class="max-w-5xl mx-auto">
+                <p class="f-mono c-gold mb-5 section-label">
+                    Frequently Asked Questions
+                </p>
+                <h2
+                    class="f-display c-white font-light leading-tight section-title mb-12"
+                >
+                    Answers, without the noise.
+                </h2>
+                <div class="divider-gold mb-12"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    {
+                        faqs.map((f) => (
+                            <div>
+                                <h4 class="f-display c-white font-normal mb-3 leading-snug faq-question">
+                                    {f.q}
+                                </h4>
+                                <p class="c-muted font-light leading-loose faq-answer">
+                                    {f.a}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FINAL CTA ────────────────────────────────────────────────────────────── -->
+        <section
+            id="contact"
+            class="relative bg-navy text-center px-6 md:px-16 py-36 overflow-hidden"
+        >
+            <div
+                class="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+                <div class="w-125 h-125 rounded-full glow-gold"></div>
+            </div>
+            <div class="relative z-10 max-w-5xl mx-auto">
+                <div class="flex justify-center mb-4">
+                    <span class="block w-12 h-px bg-gold"></span>
+                </div>
+                <p class="f-mono c-gold mb-5 section-label text-center">
+                    Book a Consultation
+                </p>
+                <h2
+                    class="f-display c-white font-light leading-tight mx-auto mb-6 cta-headline"
+                >
+                    If your business needs a system built properly,
+                    <em class="c-gold italic"> we should speak.</em>
+                </h2>
+                <p
+                    class="c-muted font-light leading-loose mx-auto mb-12 cta-body"
+                >
+                    Send us a brief description of what you are trying to build
+                    or the problem you are trying to solve. We will respond
+                    within two business days with our honest assessment.
+                </p>
+                <div
+                    class="flex flex-wrap items-center justify-center gap-5 mb-8"
+                >
+                    <a
+                        href="mailto:hello@mahlogic.africa"
+                        class="bg-gold f-mono btn-primary"
+                        data-ph-capture="cta_click"
+                        data-ph-label="final_cta_primary">Send an Enquiry</a
+                    >
+                    <a
+                        href="#what-we-build"
+                        class="f-mono c-muted hover-white-text transition-c btn-ghost inline-flex items-center gap-2"
+                    >
+                        Review our work →
+                    </a>
+                </div>
+                <p class="f-mono c-muted cta-email-line">
+                    Or write directly to
+                    <a
+                        href="mailto:hello@mahlogic.africa"
+                        class="c-gold cta-email-link"
+                    >
+                        hello@mahlogic.africa
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- ── FOOTER ───────────────────────────────────────────────────────────────── -->
+        <footer
+            class="footer-root flex flex-col md:flex-row items-center justify-between gap-6 px-6 md:px-16 py-8"
+        >
+            <div class="flex items-center gap-3 font-medium">
+                <!-- SVG LEFT -->
+                <svg
+                    class="w-12.5 h-auto"
+                    viewBox="0 0 335 132"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <g
+                        clip-path="url(#paint0_angular_92_2_clip_path)"
+                        data-figma-skip-parse="true"
+                        ><g
+                            transform="matrix(0.1 -0.118 0.178768 0.15168 100 66)"
+                            ><foreignObject
+                                x="-752.763"
+                                y="-752.763"
+                                width="1505.53"
+                                height="1505.53"
+                                ><div
+                                    xmlns="http://www.w3.org/1999/xhtml"
+                                    style="background:conic-gradient(from 90deg,rgba(230, 185, 103, 1) 0deg,rgba(196, 142, 33, 1) 360deg);height:100%;width:100%;opacity:1"
+                                >
+                                </div></foreignObject
+                            ></g
+                        ></g
+                    ><rect
+                        width="200"
+                        height="132"
+                        data-figma-gradient-fill='{"type":"GRADIENT_ANGULAR","stops":[{"color":{"r":0.90384614467620850,"g":0.72876077890396118,"b":0.40412351489067078,"a":1.0},"position":0.0},{"color":{"r":0.76923078298568726,"g":0.56067520380020142,"b":0.13313609361648560,"a":1.0},"position":1.0}],"stopsVar":[{"color":{"r":0.90384614467620850,"g":0.72876077890396118,"b":0.40412351489067078,"a":1.0},"position":0.0},{"color":{"r":0.76923078298568726,"g":0.56067520380020142,"b":0.13313609361648560,"a":1.0},"position":1.0}],"transform":{"m00":199.99996948242188,"m01":357.53552246093750,"m02":-178.76773071289062,"m10":-236.0,"m11":303.36019897460938,"m12":32.319904327392578},"opacity":1.0,"blendMode":"NORMAL","visible":true}'
+                    ></rect>
+                    <path
+                        d="M299.432 110H280.872L275.752 94.256H245.16L240.168 110H221.608L250.792 26.544C252.072 23.6427 253.48 21.6373 255.016 20.528C256.637 19.4187 258.6 18.864 260.904 18.864C263.208 18.864 265.042 19.376 266.408 20.4C267.858 21.424 269.138 23.472 270.248 26.544L299.432 110ZM271.656 79.28L260.904 43.184L249.64 79.28H271.656Z"
+                        fill="url(#paint1_linear_92_2)"></path>
+                    <path
+                        d="M95.3895 55.6L79.0055 90.16C76.6162 94.768 73.6295 97.072 70.0455 97.072C66.5468 97.072 63.6028 94.64 61.2135 89.776L44.5735 55.6V110H26.7815V18.864H44.3175L70.0455 71.472L95.6455 18.864H113.182V110H95.3895V55.6ZM188.004 110H160.868C150.628 110 143.204 108.037 138.596 104.112C134.073 100.101 131.812 93.616 131.812 84.656V18.864H149.604V84.656C149.604 88.24 150.414 90.7147 152.036 92.08C153.657 93.4453 156.601 94.128 160.868 94.128H188.004V110Z"
+                        fill="#111423"></path>
+                    <defs>
+                        <clipPath id="paint0_angular_92_2_clip_path"
+                            ><rect width="200" height="132"></rect></clipPath
+                        >
+                        <linearGradient
+                            id="paint1_linear_92_2"
+                            x1="303.422"
+                            y1="88"
+                            x2="295.15"
+                            y2="33.2742"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#DFAF56"></stop>
+                            <stop offset="1" stop-color="#F9D888"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- TEXT RIGHT -->
+                <div class="flex items-baseline f-display c-muted footer-logo">
+                    <span>MahLogic</span>
+                    <span class="c-gold">Africa</span>
+                </div>
+            </div>
+            <ul class="flex flex-wrap justify-center gap-8 list-none m-0 p-0">
+                {
+                    [...navLinks, ["#contact", "Contact"]].map(
+                        ([href, lbl]) => (
+                            <li>
+                                <a
+                                    href={href}
+                                    class="f-mono c-muted hover-gold-text transition-c footer-link"
+                                >
+                                    {lbl}
+                                </a>
+                            </li>
+                        ),
+                    )
+                }
+            </ul>
+            <p class="f-mono footer-copy">&copy; 2025 MahLogic Africa</p>
+        </footer>
+        <script is:inline>
+            document.addEventListener("click", (e) => {
+                const el = e.target?.closest?.("[data-ph-capture]");
+                if (!el || !window.posthog) return;
+                window.posthog.capture(el.getAttribute("data-ph-capture"), {
+                    label: el.getAttribute("data-ph-label") || undefined,
+                    href: el.getAttribute("href") || undefined,
+                });
+            });
+        </script>
+        <script is:inline>
+            (function () {
+                const marks = new Set();
+                const steps = [25, 50, 75, 90];
+                function onScroll() {
+                    const h = document.documentElement;
+                    const pct = Math.round(
+                        (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100,
+                    );
+                    steps.forEach((s) => {
+                        if (pct >= s && !marks.has(s) && window.posthog) {
+                            marks.add(s);
+                            window.posthog.capture("scroll_depth", {
+                                percent: s,
+                            });
+                        }
+                    });
+                }
+                window.addEventListener("scroll", onScroll, { passive: true });
+            })();
+        </script>
+    </body>
 </html>
