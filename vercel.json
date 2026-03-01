@@ -5,5 +5,13 @@
             "has": [{ "type": "host", "value": ".*vercel\\.app" }],
             "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
         }
+    ],
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "has": [{ "type": "host", "value": "www.mahlogic.africa" }],
+            "destination": "https://mahlogic.africa/$1",
+            "permanent": true
+        }
     ]
 }
