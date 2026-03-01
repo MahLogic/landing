@@ -16,5 +16,8 @@
     "astro": "^5.17.1",
     "canvas-confetti": "^1.9.4",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3"
   }
 }
