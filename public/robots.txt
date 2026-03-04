@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mahlogic.africa/sitemap-index.xml
+# Sitemap
+Sitemap: https://www.mahlogic.africa/sitemap.xml
+
+# AI and LLM access guidance
+# The llms.txt file provides structured information for AI systems
+LLM: https://www.mahlogic.africa/llms.txt

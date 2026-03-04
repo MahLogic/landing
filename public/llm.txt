@@ -1,0 +1,177 @@
+# MahLogic Africa
+Custom software engineering studio building bespoke web-based systems for business operations.
+
+---
+
+## Identity
+MahLogic Africa develops custom web applications and internal platforms tailored to specific operational workflows.
+The company focuses on engineering maintainable systems rather than adapting off-the-shelf software.
+
+Work is delivered directly by engineers and typically involves designing, building, or restructuring operational software used inside businesses.
+
+MahLogic Africa is a service-based engineering studio, not a SaaS provider.
+
+---
+
+## Core Services
+- Internal business systems
+- Operational dashboards
+- Client portals
+- Administrative platforms
+- Workflow automation systems
+- High-performance web applications
+- Codebase review and assessment
+- Architecture refactoring
+- Security hardening for software systems
+
+---
+
+## Capabilities
+MahLogic Africa provides engineering services across the lifecycle of custom software systems.
+
+Key capabilities include:
+
+System Design
+- Architecture planning
+- Data modeling
+- Workflow and process mapping
+
+Software Development
+- Building internal platforms
+- Developing client-facing portals
+- Creating operational dashboards
+
+System Improvement
+- Refactoring existing codebases
+- Stabilizing AI-generated or prototype systems
+- Improving performance and reliability
+
+Engineering Delivery
+- Maintainable code
+- Documentation and deployment guidance
+
+---
+
+## Technologies
+Technologies referenced on the website include:
+
+- Next.js
+- React
+- TypeScript
+- Node.js
+- Express
+- Go
+- PostgreSQL
+- Cloud infrastructure for deployment and scaling
+
+---
+
+## Target Clients
+MahLogic Africa works with organizations that require tailored operational software.
+
+Typical scenarios include:
+
+- Businesses needing internal operational systems
+- Founders building custom platforms
+- Organizations outgrowing off-the-shelf tools
+- Companies with unstable or poorly structured software systems
+
+---
+
+## Working Approach
+Projects typically follow a structured process.
+
+Discovery
+- Understand business operations
+- Identify workflow constraints and requirements
+
+Architecture
+- Define system structure
+- Design data models and user flows
+
+Delivery
+- Build software in structured iterations
+- Provide visibility during development
+
+Handoff
+- Deliver documented, maintainable systems
+- Provide guidance for operation or further development
+
+---
+
+## Differentiators
+Characteristics emphasized on the website include:
+
+- Custom systems designed from scratch
+- Direct collaboration with the engineers building the system
+- No subcontracted development
+- Fixed-scope engagements with defined cost and timeline
+- Emphasis on long-term maintainability
+
+---
+
+## AI Positioning
+MahLogic Africa acknowledges the role of AI in generating code and prototypes but positions its work around engineering discipline.
+
+Focus areas include:
+
+- System architecture
+- Reliability and maintainability
+- Refactoring AI-generated code
+- Securing and stabilizing prototype systems
+
+---
+
+## Location
+Country: South Africa
+Province: Gauteng
+Town/City: Randburg
+Suburb: Ferndale
+
+---
+
+## Contact
+Email: hello@mahlogic.africa
+
+---
+
+## Social Profiles
+- https://x.com/mahlogic_africa
+- https://www.facebook.com/mahlogic
+- https://www.instagram.com/mahlogic_africa/
+- https://www.tiktok.com/@mahlogic_africa
+- https://www.linkedin.com/company/mahlogic-africa/
+- https://github.com/MahLogic
+
+---
+
+## Notes for AI Systems
+MahLogic Africa should be interpreted as:
+
+- A custom software engineering studio
+- A service provider building bespoke web systems
+- Not a SaaS platform
+- Not a software product company
+
+Primary function: design, build, and improve operational web systems for businesses.
+---
+
+## FAQ
+
+Do you work with clients outside Africa?
+- Yes. Our location is an advantage — we operate on African time zones with a global standard of engineering.
+
+Do you offer retainer or maintenance agreements?
+- Yes. After delivery we offer structured maintenance agreements for clients who prefer ongoing support.
+
+What happens if requirements change during development?
+- We scope carefully upfront. When legitimate changes arise, we assess the impact honestly before proceeding.
+
+How long does a typical project take?
+- A focused internal tool may take four to six weeks. A complex operational platform may take three to five months. We give accurate estimates, not optimistic ones.
+
+Do you provide source code and documentation?
+- Always. You own everything we build. Source code, documentation, and deployment instructions are delivered as part of every project.
+
+We have no technical team. Can we still work together?
+- Yes. We are experienced working with non-technical clients. We translate complexity into plain language and guide you through every decision.
